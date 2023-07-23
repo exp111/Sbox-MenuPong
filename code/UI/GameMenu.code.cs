@@ -29,6 +29,8 @@ partial class GameMenu
 	public IReadOnlyList<Ball> Balls => balls;
 	private readonly List<Ball> balls = new();
 
+	public Buttplug Buttplug { get; private set; }
+
 	/// <summary>
 	/// The size of the playable window in pixels.
 	/// </summary>
@@ -46,6 +48,7 @@ partial class GameMenu
 	private Panel Player1Visual { get; set; } = null!;
 	private Panel Player2Visual { get; set; } = null!;
 
+	private bool TimerStarted { get; set; } = false;
 	/// <summary>
 	/// The time in seconds until gameplay can begin.
 	/// </summary>
@@ -58,6 +61,7 @@ partial class GameMenu
 	public GameMenu()
 	{
 		Instance = this;
+		Buttplug = new();
 	}
 
 	~GameMenu()

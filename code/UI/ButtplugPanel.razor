@@ -1,0 +1,60 @@
+@using Sandbox
+@using Sandbox.UI
+@using System
+@using Sandbox.Buttplug
+
+@attribute [StyleSheet]
+@inherits Panel
+@namespace Pong
+
+<root>
+    <label>@(Connected ? "Connected" : "Not Connected") (@Devices Devices)</label>
+</root>
+
+@code {
+    /// <summary>
+    /// The amount of times paddles have hit balls. Represents the current streak the paddles have going on.
+    /// </summary>
+    public bool Connected { get; private set; }
+    public int Devices { get; private set; }
+
+    /// <inheritdoc/>
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Connected, Devices);
+    }
+
+    /// <summary>
+    /// Invoked when a paddle has intercepted a ball.
+    /// </summary>
+    /// <param name="ball">The ball that was intercepted.</param>
+    /// <param name="paddle">The paddle that intercepted the ball.</param>
+    [Event( "buttplug.connected" )]
+    private void OnButtplugConnected(ButtplugClient client)
+    {
+        Connected = true;
+        Devices = client.Devices.Length;
+    }
+
+    /// <summary>
+    /// Invoked when a game has ended and needs to be reset.
+    /// </summary>
+    [Event("buttplug.disconnected")]
+    private void OnButtplugDisconnected(ButtplugClient client)
+    {
+        Connected = false;
+        Devices = 0;
+    }
+
+    [Event("buttplug.deviceadded")]
+    private void OnButtplugDeviceAdded(ButtplugClient client, ButtplugClientDevice device)
+    {
+        Devices = client.Devices.Length;
+    }
+
+    [Event("buttplug.deviceremoved")]
+    private void OnButtplugDeviceRemoved(ButtplugClient client, ButtplugClientDevice device)
+    {
+        Devices = client.Devices.Length;
+    }
+}

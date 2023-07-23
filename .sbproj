@@ -1,17 +1,19 @@
 {
-  "Title": "Menu Pong",
+  "Title": "Buttplug Pong",
   "Type": "game",
-  "Org": "gooman",
-  "Ident": "menu_pong",
-  "Tags": "menu pong",
+  "Org": "deusexp",
+  "Ident": "buttplug_pong",
+  "Tags": "menu pong buttplug nsfw",
   "Schema": 1,
   "HasAssets": false,
   "AssetsPath": "",
   "Resources": null,
-  "MenuResources": "\nUI/GameMenu.razor.scss\nUI/ScorePanel.razor.scss\nUI/TallyPanel.razor.scss",
+  "MenuResources": "UI/ButtplugPanel.razor.scss\nUI/GameMenu.razor.scss\nUI/ScorePanel.razor.scss\nUI/TallyPanel.razor.scss",
   "HasCode": true,
   "CodePath": "/code/",
-  "PackageReferences": [],
+  "PackageReferences": [
+    "deusexp.buttplug"
+  ],
   "EditorReferences": null,
   "Metadata": {
     "MaxPlayers": 1,
@@ -91,6 +93,30 @@
     "Summary": "A simple Pong game you can play in the menu",
     "Description": "You can view the code here: https://github.com/peter-r-g/Sbox-MenuPong",
     "Public": true,
-    "ReplaceTags": "menu pong"
+    "ReplaceTags": "menu pong",
+    "TickRate": 50,
+    "ParentPackage": "gooman.menu_pong",
+    "PackageSettings": [
+      {
+        "Choices": [],
+        "ConVarName": "buttplug_url",
+        "DisplayName": "Buttplug URL",
+        "DefaultValue": "ws://localhost:8080",
+        "Description": "The url of the buttplug server",
+        "Group": ""
+      }
+    ],
+    "LaunchConfigs": [
+      {
+        "Name": "My New Config",
+        "GameIdent": "local.buttplug_pong#local",
+        "MapName": "\u003Cempty\u003E",
+        "MaxPlayers": 1,
+        "GameSettings": {},
+        "Addons": "",
+        "PreLaunchCommand": "",
+        "PostLaunchCommand": ""
+      }
+    ]
   }
 }
